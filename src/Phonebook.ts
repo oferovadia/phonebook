@@ -63,8 +63,13 @@ class Phonebook implements IPhonebook {
                 break
             }
         }
-        const removedContact = this.contacts.pop()
-        return removedContact
+        if (temp) {
+            const removedContact = this.contacts.pop()
+            return removedContact
+        }
+        else {
+            return
+        }
     }
     
     [Symbol.iterator](): any {
@@ -87,6 +92,6 @@ class Phonebook implements IPhonebook {
 
 }
 
-export function createPhonebook(): IPhonebook{
+export function createPhonebook(): IPhonebook {
     return new Phonebook()
 }

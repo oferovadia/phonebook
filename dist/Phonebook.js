@@ -52,8 +52,13 @@ class Phonebook {
                 break;
             }
         }
-        const removedContact = this.contacts.pop();
-        return removedContact;
+        if (temp) {
+            const removedContact = this.contacts.pop();
+            return removedContact;
+        }
+        else {
+            return;
+        }
     }
     [Symbol.iterator]() {
         return this;
@@ -75,4 +80,10 @@ class Phonebook {
 function createPhonebook() {
     return new Phonebook();
 }
+
+
+function createPhonebook() {
+    return new Phonebook();
+}
+
 exports.createPhonebook = createPhonebook;
