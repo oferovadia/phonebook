@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Contact_1 = require("./Contact");
+exports.createPhonebook = void 0;
 class Phonebook {
     constructor() {
         this.contacts = [];
+        this.index = 0;
     }
     size() {
         //gets the amount of contacts
@@ -54,19 +55,24 @@ class Phonebook {
         const removedContact = this.contacts.pop();
         return removedContact;
     }
+    [Symbol.iterator]() {
+        return this;
+    }
+    next() {
+        if (this.index === this.contacts.length) {
+            return {
+                done: true
+            };
+        }
+        else {
+            return {
+                done: false,
+                value: this.contacts[this.index++]
+            };
+        }
+    }
 }
-const phoneBook = new Phonebook();
-// console.log(phoneBook.size());
-phoneBook.add(new Contact_1.Contact(1, "Ofer", "Hertzel", ["052222"]));
-phoneBook.add(new Contact_1.Contact(2, "Niv", "Hertzesdfl", ["0523434222"]));
-phoneBook.add(new Contact_1.Contact(3, "Noam", "Hertzefdfl", ["052222345435"]));
-phoneBook.add(new Contact_1.Contact(4, "Noam", "Hsdfsdfsdfffl", ["0533335"]));
-phoneBook.add(new Contact_1.Contact(5, "Noam", "sdfsdfsdf", ["0523345435"]));
-// console.log(phoneBook.size());
-// console.log(phoneBook);
-// console.log(phoneBook);
-// console.log("ID: ", phoneBook.get(3));
-// console.log("NAME: ", phoneBook.get("Ofer"));
-// console.log("NAME: ", phoneBook.get("Noam"));
-console.log(phoneBook.remove(4));
-console.log(phoneBook);
+function createPhonebook() {
+    return new Phonebook();
+}
+exports.createPhonebook = createPhonebook;

@@ -4,8 +4,11 @@ import { Contact } from "./Contact";
 class Phonebook implements IPhonebook {
 
     contacts: Contact[] = []
+    index: number
 
-    constructor() { }
+    constructor() { 
+        this.index = 0
+    }
 
 
     size(): number {
@@ -63,6 +66,25 @@ class Phonebook implements IPhonebook {
         const removedContact = this.contacts.pop()
         return removedContact
     }
+    
+    [Symbol.iterator](): any {
+        return this
+    }
+
+    next(){
+        if(this.index === this.contacts.length){
+            return{
+                done: true
+            }
+        }
+        else { 
+            return{
+                done: false,
+                value: this.contacts[this.index++]
+            }
+        }
+    }
+
 }
 
 export function createPhonebook(): IPhonebook{
