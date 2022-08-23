@@ -11,5 +11,3 @@ class Contact {
     }
 }
 exports.Contact = Contact;
-const con = new Contact(1, "hi", "o", [12324234234]);
-console.log(con);
