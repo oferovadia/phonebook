@@ -5,15 +5,15 @@ class Phonebook implements IPhonebook {
 
     contacts: Contact[] = []
 
-    constructor(){}
-    
+    constructor() { }
+
 
     size(): number {
         //gets the amount of contacts
         return this.contacts.length
     }
 
-    addContact(contact: Contact): number {
+    add(contact: Contact): number {
         //add contact and returns its new id
         this.contacts.push(contact)
         return contact.id
@@ -21,27 +21,50 @@ class Phonebook implements IPhonebook {
 
     addPhone(id: number, phone: string): void {
         //add new phone to existing contact
+        for (const contact of this.contacts) {
+            if (contact.id == id) {
+                contact.phones.push(phone)
+            }
+        }
     }
 
-    getByID(id: number): Contact | undefined {
-        //gets contact by id
-        return
-    }
+    get(id: number): Contact | undefined        //get contact by id
+    get(name: string): Contact[] | undefined    //get contacts by name
 
-    getByName(name: string): Contact[] | undefined {
-        //get contacts by name
-        return
+    get(input: unknown): unknown {
+        if (typeof (input) == "number") {
+            for (const contact of this.contacts) {
+                if (contact.id == input) {
+                    return contact
+                }
+            }
+        } else {
+            const contactsByName = []
+            for (const contact of this.contacts) {
+                if (contact.name == input) {
+                    contactsByName.push(contact)
+                }
+            }
+            return contactsByName
+        }
     }
 
     remove(id: number): Contact | undefined {
         //remove contact by id and returns it
-        return
+        let temp
+        for (let i = 0; i < this.contacts.length; i++) {
+            if (this.contacts[i].id == id) {
+                temp = this.contacts[i]
+                this.contacts[i] = this.contacts[this.contacts.length - 1]
+                this.contacts[this.contacts.length - 1] = temp
+                break
+            }
+        }
+        const removedContact = this.contacts.pop()
+        return removedContact
     }
 }
 
-
-
-const phoneBook = new Phonebook()
-
-console.log(phoneBook.size());
-phoneBook.addContact(new Contact(1, "Ofer", "Hertzel", ["052222"]))
+export function createPhonebook(): IPhonebook{
+    return new Phonebook()
+}
