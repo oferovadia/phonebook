@@ -23,8 +23,6 @@ yellowPages.add(new Contact(11, "David", "Hashikma 70, Ramant Gan", ["054-542-28
 yellowPages.add(new Contact(12, "Sason", "Hagola 2, Ramant Gan", ["053-987-4625"]))
 yellowPages.add(new Contact(13, "Shlomi", "Hadekel 99, Bnei Barak", ["054-876-1305"]))
 
-yellowPages.add(new Contact(2, "Sason", "Hagola 2, Ramant Gan", ["053-987-4625"]))
-yellowPages.add(new Contact(3, "Shlomi", "Hadekel 99, Bnei Barak", ["054-876-1305"]))
 console.log(`Size: ${yellowPages.size()}`)
 
 
@@ -44,14 +42,12 @@ contactsByName?.forEach(contact => {
 
 if (contactsByName) {
     const contactToRemove = contactsByName[contactsByName.length - 1]
-
-if(contactsByName){
-    const contactToRemove = contactsByName[contactsByName.length-1]
-
-    yellowPages.remove(contactToRemove.id)
+    if (contactsByName) {
+        const contactToRemove = contactsByName[contactsByName.length - 1]
+        yellowPages.remove(contactToRemove.id)
+    }
+    console.log(`Size: ${yellowPages.size()}`)
 }
-console.log(`Size: ${yellowPages.size()}`)
-
 
 
 

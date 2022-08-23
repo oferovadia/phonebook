@@ -80,10 +80,4 @@ class Phonebook {
 function createPhonebook() {
     return new Phonebook();
 }
-
-
-function createPhonebook() {
-    return new Phonebook();
-}
-
 exports.createPhonebook = createPhonebook;
