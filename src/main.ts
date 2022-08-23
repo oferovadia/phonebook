@@ -19,6 +19,10 @@ yellowPages.add(new Contact(11, "David", "Hashikma 70, Ramant Gan", ["054-542-28
 
 //add 2 new contacts: 1 with existing name, 1 with new name
 //check the size is updated
+
+yellowPages.add(new Contact(12, "Sason", "Hagola 2, Ramant Gan", ["053-987-4625"]))
+yellowPages.add(new Contact(13, "Shlomi", "Hadekel 99, Bnei Barak", ["054-876-1305"]))
+
 yellowPages.add(new Contact(2, "Sason", "Hagola 2, Ramant Gan", ["053-987-4625"]))
 yellowPages.add(new Contact(3, "Shlomi", "Hadekel 99, Bnei Barak", ["054-876-1305"]))
 console.log(`Size: ${yellowPages.size()}`)
@@ -37,10 +41,24 @@ contactsByName?.forEach(contact => {
 
 //remove the last contact (of the previous contacts from #8) by id
 //check the size is updated
+
+if (contactsByName) {
+    const contactToRemove = contactsByName[contactsByName.length - 1]
+
 if(contactsByName){
     const contactToRemove = contactsByName[contactsByName.length-1]
+
     yellowPages.remove(contactToRemove.id)
 }
 console.log(`Size: ${yellowPages.size()}`)
+
+
+
+
+for (const contact of yellowPages) {
+    //contacts will be delivered in alphabetical order
+    //Try with O(N) complexity
+    console.log(contact);
+}
 
 

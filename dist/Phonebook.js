@@ -4,6 +4,7 @@ exports.createPhonebook = void 0;
 class Phonebook {
     constructor() {
         this.contacts = [];
+        this.index = 0;
     }
     size() {
         //gets the amount of contacts
@@ -59,8 +60,30 @@ class Phonebook {
             return;
         }
     }
+    [Symbol.iterator]() {
+        return this;
+    }
+    next() {
+        if (this.index === this.contacts.length) {
+            return {
+                done: true
+            };
+        }
+        else {
+            return {
+                done: false,
+                value: this.contacts[this.index++]
+            };
+        }
+    }
 }
 function createPhonebook() {
     return new Phonebook();
 }
+
+
+function createPhonebook() {
+    return new Phonebook();
+}
+
 exports.createPhonebook = createPhonebook;
